@@ -49,11 +49,6 @@ class DataTransformer:
                 ('test', num_pipeline, num_features)
             ])
 
-            save_object(
-                self.DataTransformerConfig_obj.data_transformer_path,
-                transformer
-            )
-
             return transformer
 
         except Exception as e:
@@ -73,12 +68,16 @@ class DataTransformer:
             y_train = train_data[target_column]
             y_test = test_data[target_column]
 
-            transformed_train_data = transformer.fit_transform(train_data)
-            transformed_test_data = transformer.transform(test_data)
+            transformed_train_data = transformer.fit_transform(X_train)
+            transformed_test_data = transformer.transform(X_test)
 
             train_array = np.c_[transformed_train_data, np.array(y_train)]
             test_array = np.c_[transformed_test_data, np.array(y_test)]
 
+            save_object(
+                self.DataTransformerConfig_obj.data_transformer_path,
+                transformer
+            )
 
             return train_array, test_array
 
