@@ -37,31 +37,16 @@ class CustomData:
     def get_data_as_frame(self):
         try:
             custom_data_input_dict = {
-                "gender": [self.gender],
-                "race_ethnicity":[self.race_ethnicity],
-                "parental_level_of_education":[self.parental_level_of_education],
-                "lunch":[self.lunch],
-                "test_preparation_course":[self.test_preparation_course],
-                "reading_score":[self.reading_score],
-                "writing_score":[self.writing_score],
-                "Average":[self.average],
-                "Total_Score":[self.total_score]
+                'gender': [self.gender],
+                'race_ethnicity': [self.race_ethnicity],
+                'parental_level_of_education': [self.parental_level_of_education],
+                'lunch': [self.lunch],
+                'test_preparation_course': [self.test_preparation_course],
+                'reading_score': [self.reading_score],
+                'writing_score': [self.writing_score],
+                'Average': [self.average],
+                'Total_Score': [self.total_score]
             }
-            print(f"get_data_as_frame result is : {pd.DataFrame(custom_data_input_dict)["Average"]}")
-            print(f"get_data_as_frame result is : {pd.DataFrame(custom_data_input_dict)["Total_Score"]}")
             return pd.DataFrame(custom_data_input_dict)
         except Exception as e:
             raise CustomException(e,sys)
-
-if __name__ == '__main__':
-    dff = pd.read_csv('D:/PythonProject/artifacts/test.csv')
-    df=dff.drop(["math_score"],axis=1)
-    test_data = pd.DataFrame({
-        "gender": ["female"],
-        "race_ethnicity": [None]  # This is exactly what causes your Flask error
-    })
-    preprossor = load_object('D:/PythonProject/artifacts/data_transformer.pkl')
-    tranformed_data = preprossor.transform(test_data)
-    model=load_object('D:/PythonProject/artifacts/model.pkl')
-    predict_data=model.predict(tranformed_data)
-    print(predict_data[0])
