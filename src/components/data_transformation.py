@@ -6,18 +6,12 @@ from sklearn.preprocessing import StandardScaler,OneHotEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 
-from src.components.model_trainer import ModelTrainerPath
-
-os.chdir("D:/PythonProject")
 from src.exception import CustomException
-from src.logger import logging
 
 from dataclasses import dataclass
 
 from src.utils import save_object
 from src.components.data_ingestion import DataIngestor
-
-from src.components.model_trainer import ModelTrainerPath
 from src.components.model_trainer import ModelTrainer
 
 @dataclass

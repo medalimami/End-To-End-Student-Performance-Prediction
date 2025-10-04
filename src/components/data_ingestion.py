@@ -5,18 +5,11 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
-#@dataclass
-#class DataIngestorPath:
-#    train_data_path: str= os.path.join("artifacts","train.csv")
-#    test_data_path: str = os.path.join("artifacts", "test.csv")
-#    raw_data_path: str = os.path.join("artifacts", "raw.csv")
-
-
+@dataclass
 class DataIngestorPath:
-    def __init__(self):
-        self.train_data_path= os.path.join("artifacts","train.csv")
-        self.test_data_path = os.path.join("artifacts", "test.csv")
-        self.raw_data_path = os.path.join("artifacts", "raw.csv")
+    train_data_path: str= os.path.join("artifacts","train.csv")
+    test_data_path: str = os.path.join("artifacts", "test.csv")
+    raw_data_path: str = os.path.join("artifacts", "raw.csv")
 
 class DataIngestor:
     def __init__(self):
@@ -26,7 +19,7 @@ class DataIngestor:
         #ingestion_config = DataIngestorPath()
         logging.info("Entered the data ingestion method or component")
         try:
-            df=pd.read_csv("D:/PythonProject/src/notebook/data/df.csv")
+            df = pd.read_csv("src/notebook/data/df.csv")
             logging.info("The dataframe has been loaded")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
